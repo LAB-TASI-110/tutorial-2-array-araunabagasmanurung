@@ -1,32 +1,28 @@
-#include <stdio.h>    // Diperlukan untuk fungsi input/output seperti printf dan scanf
+#include <stdio.h>    // Diperlukan untuk fungsi input/output seperti scanf dan printf
 #include <limits.h>   // Diperlukan untuk INT_MAX dan INT_MIN
 #include <float.h>    // Diperlukan untuk DBL_MAX dan DBL_MIN (untuk inisialisasi rata-rata)
 
 int main() {
     int n;           // Variabel untuk menyimpan jumlah angka yang akan dimasukkan
     int angka;       // Variabel untuk menyimpan setiap angka yang dimasukkan
-    int min_val = INT_MAX; // Inisialisasi nilai minimum dengan nilai integer terbesar yang mungkin
-    int max_val = INT_MIN; // Inisialisasi nilai maksimum dengan nilai integer terkecil yang mungkin
+    int min_val = INT_MAX; // Inisialisasi nilai minimum
+    int max_val = INT_MIN; // Inisialisasi nilai maksimum
 
-    double min_avg_consecutive = DBL_MAX; // Inisialisasi rata-rata terendah dengan nilai double terbesar yang mungkin
-    double max_avg_consecutive = DBL_MIN; // Inisialisasi rata-rata tertinggi dengan nilai double terkecil yang mungkin
+    double min_avg_consecutive = DBL_MAX; // Inisialisasi rata-rata terendah dengan nilai double terbesar
+    double max_avg_consecutive = DBL_MIN; // Inisialisasi rata-rata tertinggi dengan nilai double terkecil
 
-    int prev_angka = 0; // Menyimpan angka sebelumnya untuk perhitungan rata-rata berturut-turut
-    int has_at_least_one_pair = 0; // Flag untuk menentukan apakah sudah ada setidaknya satu pasangan angka yang dihitung rata-ratanya
+    int prev_angka = 0; // Menyimpan angka sebelumnya
+    int has_at_least_one_pair = 0; // Flag untuk melacak apakah ada setidaknya satu pasangan rata-rata yang dihitung
 
-    // Pesan untuk pengguna agar memasukkan jumlah angka (n)
-    printf("Masukkan jumlah angka yang akan Anda proses: ");
-    // Membaca nilai n dari input pengguna
+    // Membaca nilai n dari input pengguna (tanpa prompt)
     scanf("%d", &n);
 
-    // Memastikan n adalah angka positif
+    // Menangani kasus n <= 0 (tanpa pesan error ke stdout)
     if (n <= 0) {
-        printf("Jumlah angka harus lebih dari 0.\n");
         return 1; // Keluar dengan kode error
     }
 
-    // Loop untuk membaca n angka dari pengguna
-    printf("Masukkan %d angka (pisahkan dengan spasi atau enter):\n", n);
+    // Loop untuk membaca n angka dari pengguna (tanpa prompt)
     for (int i = 0; i < n; i++) {
         // Membaca setiap angka
         scanf("%d", &angka);
@@ -64,12 +60,9 @@ int main() {
     printf("%d\n", max_val);
 
     // Menampilkan rata-rata terendah dan tertinggi jika ada cukup data (n >= 2)
-    if (has_at_least_one_pair) { // Hanya cetak jika minimal ada satu pasangan rata-rata yang dihitung
+    if (has_at_least_one_pair) {
         printf("%.2lf\n", min_avg_consecutive);
         printf("%.2lf\n", max_avg_consecutive);
-    } else {
-        // Opsional: Pesan jika tidak ada cukup angka untuk rata-rata
-        // printf("Tidak cukup angka untuk menghitung rata-rata pasangan.\n");
     }
 
     return 0; // Mengindikasikan program berhasil dieksekusi
